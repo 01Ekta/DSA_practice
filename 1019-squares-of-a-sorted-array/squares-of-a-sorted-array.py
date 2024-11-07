@@ -1,12 +1,10 @@
-from typing import List
-
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
         # Square each element
-        square = [x * x for x in nums]
+        square = []
         
-        # Sort the squared elements
+        for num in nums:
+            square.append(num*num)
+
         square.sort()
-        
-        # Return the sorted list of squares
         return square
