@@ -1,8 +1,14 @@
 class Solution:
     def triangleNumber(self, nums: List[int]) -> int:
-        v = sorted(n for n in nums if n > 0)
-        return sum(
-            bisect_left(v, v[i] + v[j]) - j - 1
-            for i in range(len(v) - 2)
-            for j in range(i + 1, len(v) - 1)
-        )
+        nums.sort()
+        count = 0
+        for k in range(len(nums) - 1, -1, -1):
+            i = 0
+            j = k - 1
+            while i < j:
+                if nums[i] + nums[j] > nums[k]:
+                    count += j - i
+                    j -= 1
+                else:
+                    i += 1
+        return count
